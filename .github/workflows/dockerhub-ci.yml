@@ -39,5 +39,5 @@ jobs:
           file: ./dockerfile-carolina/Dockerfile        # Dockerfile en la carpeta dockerfile-carolina
           push: true
           tags: |
-            ${{ secrets.DOCKERHUB_USERNAME_CAROLINA }}/pipeline-t01-be:latest
-            ${{ secrets.DOCKERHUB_USERNAME_CAROLINA }}/pipeline-t01-be:${{ github.sha }}
+            ${{ secrets.DOCKERHUB_USERNAME_CAROLINA }}/pipeline-t19-be:latest
+            ${{ secrets.DOCKERHUB_USERNAME_CAROLINA }}/pipeline-t19-be:${{ github.sha }}
