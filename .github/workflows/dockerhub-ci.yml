@@ -28,7 +28,7 @@ jobs:
         uses: docker/login-action@v1
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME_CAROLINA }}
-          password: ${{ secrets.DOCKERHUB_TOKEN_CAROLINA }}
+          password: ${{ secrets.DOCKERHUB_TOKEN_CAROLINA}}
 
       # 3. Build y Push con tags latest y SHA
       - name: Build and Push Docker Image to Docker Hub
@@ -36,7 +36,7 @@ jobs:
         with:
           context: .
           #dockerfile: Dockerfile   # Dockerfile en la raíz del proyecto
-          file: ./dockerfile-carolina/Dockerfile        # Dockerfile en la carpeta dockerfile-juan
+          file: ./dockerfile-carolina/Dockerfile        # Dockerfile en la carpeta dockerfile-carolina
           push: true
           tags: |
             ${{ secrets.DOCKERHUB_USERNAME_CAROLINA }}/springboot-sqlserver:latest
