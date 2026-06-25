@@ -13,6 +13,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import vallegrande.edu.pe.AgroTecno.model.Client;
@@ -79,5 +85,27 @@ public class ClientRest {
     @Operation(summary = "Restaurar")
     public Client restore(@PathVariable Integer id) {
         return clientService.restore(id);
+    }
+
+    @PostMapping("/import")
+    public ResponseEntity<String> importCsv(@RequestParam("file") MultipartFile file) throws Exception {
+        clientService.importCsv(file);
+        return ResponseEntity.ok("CSV importado correctamente");
+    }
+
+    @GetMapping("/pdf")
+    public ResponseEntity<byte[]> exportPdf() throws Exception {
+        byte[] pdf = clientService.exportPdf();
+        return ResponseEntity.ok()
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=clients.pdf")
+                .contentType(MediaType.APPLICATION_PDF).body(pdf);
+    }
+
+    @GetMapping("/excel")
+    public ResponseEntity<byte[]> exportExcel() throws Exception {
+        byte[] excel = clientService.exportExcel();
+        return ResponseEntity.ok()
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=clients.xlsx")
+                .contentType(MediaType.APPLICATION_OCTET_STREAM).body(excel);
     }
 }

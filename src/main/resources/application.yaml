@@ -28,6 +28,10 @@ spring:
       adjust-dates-to-context-time-zone: true
     default-property-inclusion: non_null
 
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+
 springdoc:
   api-docs:
     enabled: true
